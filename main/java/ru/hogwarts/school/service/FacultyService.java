@@ -33,6 +33,8 @@ public class FacultyService {
     public Faculty deleteFaculty (Long facultyId) {
         return faculties.remove(facultyId);
     }
+
+    //Получение списка факультетов по цвету
     public List<Faculty> facultyExtractByColor(String color) {
         return faculties.values().stream()
                 .filter(e -> e.getColor().equals(color))

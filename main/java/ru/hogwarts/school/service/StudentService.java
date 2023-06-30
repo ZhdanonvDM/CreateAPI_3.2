@@ -30,6 +30,8 @@ public class StudentService {
     public Student deletestudent(Long studentId) {
         return students.remove(studentId);
     }
+
+    //Получение списка студентов по возрасту
     public List<Student> studentExtractByAge(int age) {
         return students.values().stream()
                 .filter(e -> e.getAge() == age)
