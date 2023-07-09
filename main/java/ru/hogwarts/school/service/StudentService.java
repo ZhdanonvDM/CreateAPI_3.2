@@ -1,6 +1,9 @@
 package ru.hogwarts.school.service;
 import org.springframework.stereotype.Service;
+import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
+import ru.hogwarts.school.repository.FacultyRepository;
+import ru.hogwarts.school.repository.StudentRepository;
 
 import java.util.HashMap;
 import java.util.List;
@@ -9,32 +12,32 @@ import java.util.stream.Collectors;
 
 @Service
 public class StudentService {
-    private Map<Long, Student> students = new HashMap<>();
-    private Long generatedStudentId = 1L;
+    private final StudentRepository sr;
+
+    public StudentService(StudentRepository sr) {
+        this.sr = sr;
+    }
 
     public Student createStudent(Student student) {
-        students. put(generatedStudentId, student);
-        generatedStudentId++;
-        return student;
+        return sr.save(student);
     }
 
-    public Student getStudentById(Long studentId) {
-        return students.get(studentId);
+    public Student getStudentById(long studentId) {
+        return sr.findById(studentId).get();
     }
 
-    public Student updateStudent(Long studentId, Student student) {
-        students.put(studentId, student);
-        return student;
+    public Student updateStudent(Student student) {
+        return sr.save(student);
     }
 
-    public Student deletestudent(Long studentId) {
-        return students.remove(studentId);
-    }
+    public void deleteStudent (Long studentId) {
+        sr.deleteById(studentId);
+        }
 
     //Получение списка студентов по возрасту
-    public List<Student> studentExtractByAge(int age) {
+/*    public List<Student> studentExtractByAge(int age) {
         return students.values().stream()
                 .filter(e -> e.getAge() == age)
                 .collect(Collectors.toList());
-    }
+    }*/
 }

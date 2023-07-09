@@ -33,7 +33,7 @@ public class FacultyController {
 
     @PutMapping()
     public ResponseEntity updateFaculty(@RequestBody Faculty faculty) {
-        Faculty updatedfaculty = facultyService.updateFaculty(faculty.getId(), faculty);
+        Faculty updatedfaculty = facultyService.updateFaculty(faculty);
         return ResponseEntity.ok(updatedfaculty);
     }
     @DeleteMapping("{facultyId}")
@@ -45,12 +45,12 @@ public class FacultyController {
         facultyService.deleteFaculty(facultyId);
         return ResponseEntity.ok(faculty);
     }
-    @GetMapping("/color/{facultyColor}")
+/*    @GetMapping("/color/{facultyColor}")
     public ResponseEntity facultyExtractByAge (@PathVariable String facultyColor) {
         List<Faculty> faculties = facultyService.facultyExtractByColor(facultyColor);
         if(faculties == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(faculties);
-    }
+    }*/
 }

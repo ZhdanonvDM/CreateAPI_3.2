@@ -33,7 +33,7 @@ public class StudentController {
 
     @PutMapping()
     public ResponseEntity updateStudent(@RequestBody Student student) {
-        Student updatedStudent = studentService.updateStudent(student.getId(), student);
+        Student updatedStudent = studentService.updateStudent(student);
         return ResponseEntity.ok(updatedStudent);
     }
     @DeleteMapping("{studentId}")
@@ -42,16 +42,16 @@ public class StudentController {
         if(student == null) {
             return ResponseEntity.notFound().build();
         }
-        studentService.deletestudent(studentId);
+        studentService.deleteStudent(studentId);
         return ResponseEntity.ok(student);
     }
-    @GetMapping("/age/{studentAge}")
+/*    @GetMapping("/age/{studentAge}")
     public ResponseEntity studentExtractByAge (@PathVariable int studentAge) {
         List<Student> students = studentService.studentExtractByAge(studentAge);
         if(students == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(students);
-    }
+    }*/
     
 }
