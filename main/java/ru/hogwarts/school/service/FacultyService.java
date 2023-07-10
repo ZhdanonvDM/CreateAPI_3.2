@@ -11,6 +11,7 @@ import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -41,6 +42,21 @@ public class FacultyService {
  //       return faculties.remove(facultyId);
     }
 
+    public Faculty findFacultyByColorOrNameIgnoreCase (String color, String name) {
+        return fr.findFacultyByColorOrNameIgnoreCase(color, name);
+    }
+
+/*    public Faculty findFacultyByStudents (Set<Student> students) {
+        return fr.findFacultyByStudents(students);
+    }*/
+
+/*    public Faculty findFacultyByStudentsContainingIgnoreCase (String studentName) {
+        return fr.findFacultyByStudentsContainingIgnoreCase(studentName);
+    }*/
+
+/*    public Faculty findFacultyById (long id) {
+        return fr.findFacultyById(id);
+    }*/
     //Получение списка факультетов по цвету
 /*    public List<Faculty> facultyExtractByColor(String color) {
         return faculties.values().stream()

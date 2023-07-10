@@ -14,9 +14,9 @@ public class Faculty {
     private String name;
     private String color;
 
-/*    @OneToMany
+    @OneToMany
     @JoinColumn(name = "faculty_id")
-    private Set<Student> students;*/
+    private Set<Student> students;
 
 
     public Faculty(Long id, String name, String color) {

@@ -2,9 +2,11 @@ package ru.hogwarts.school.controller;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.FacultyService;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/faculty")
@@ -45,6 +47,43 @@ public class FacultyController {
         facultyService.deleteFaculty(facultyId);
         return ResponseEntity.ok(faculty);
     }
+    @GetMapping("/find_faculty_by_color_name/")
+    public ResponseEntity findFacultyByColorOrName (@RequestParam (required = false) String color, @RequestParam (required = false) String name) {
+        Faculty faculty = facultyService.findFacultyByColorOrNameIgnoreCase(color, name);
+        if(faculty == null && color == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(faculty);
+    }
+
+/*    @GetMapping("/find_faculty_by_student_name/")
+    public ResponseEntity findFacultyStudentName (@RequestParam String studentName) {
+        Faculty faculty = facultyService.findFacultyByStudentsContainingIgnoreCase(studentName);
+        if(studentName == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(faculty);
+    }*/
+
+
+
+/*    @GetMapping("/find_faculty_by_students/")
+    public ResponseEntity findFacultyByStudent(@RequestBody Set<Student> students) {
+        Faculty faculty = facultyService.findFacultyByStudents(students);
+        if(faculty == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(faculty);
+    }*/
+/*    @GetMapping("/find_faculty_by_student_id/{studentId}")
+    public ResponseEntity findFacultyById (@PathVariable Long student_id) {
+        Faculty faculty = facultyService.findFacultyById(student_id);
+        if(faculty == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(faculty);
+    }*/
+
 /*    @GetMapping("/color/{facultyColor}")
     public ResponseEntity facultyExtractByAge (@PathVariable String facultyColor) {
         List<Faculty> faculties = facultyService.facultyExtractByColor(facultyColor);

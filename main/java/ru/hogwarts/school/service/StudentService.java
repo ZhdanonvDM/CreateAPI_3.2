@@ -5,9 +5,7 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.FacultyRepository;
 import ru.hogwarts.school.repository.StudentRepository;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,6 +31,13 @@ public class StudentService {
     public void deleteStudent (Long studentId) {
         sr.deleteById(studentId);
         }
+    public Set<Student> findStudentsByFaculty_Id(long faculty_id) {
+        return sr.findStudentsByFaculty_Id(faculty_id);
+    }
+
+    public Collection<Student> findStudentsByAgeBetween(int min, int max) {
+        return sr.findStudentsByAgeBetween(min, max);
+    }
 
     //Получение списка студентов по возрасту
 /*    public List<Student> studentExtractByAge(int age) {
