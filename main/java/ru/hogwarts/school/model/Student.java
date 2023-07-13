@@ -3,10 +3,7 @@ package ru.hogwarts.school.model;
 import nonapi.io.github.classgraph.json.Id;
 
 //import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Objects;
 @Entity
 public class Student {
@@ -19,6 +16,10 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
+
+    @OneToOne
+ //   @JoinColumn(name = "avatar_id")
+    private Avatar avatar;
 
 
     public Student(Long id, String name, int age) {
