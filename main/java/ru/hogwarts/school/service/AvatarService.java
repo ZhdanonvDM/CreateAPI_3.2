@@ -43,9 +43,9 @@ public class AvatarService {
         ) {
             bis.transferTo(bos);
         }
-       Avatar avatar = findAvatar(studentId);
- //       Avatar avatar = new Avatar();
-        avatar.setStudent(student);
+ //      Avatar avatar = findAvatar(studentId);
+        Avatar avatar = new Avatar();
+  //      avatar.setStudent(student);
         avatar.setFilePath(filePath.toString());
         avatar.setFileSize(avatarFile.getSize());
         avatar.setMediaType(avatarFile.getContentType());
@@ -53,10 +53,10 @@ public class AvatarService {
         avatarRepository.save(avatar);
     }
 
-    public Avatar findAvatar(Long studentId) {
-        return avatarRepository.findAvatarByStudentId(studentId).orElseThrow();
+/*    public Avatar findAvatar(Long studentId) {
+        return avatarRepository.findAvatarByStudentId(studentId).orElse(new Avatar());
         //orElseThrow()
-    }
+    }*/
 
     private String getExtensions(String fileName) {
         return fileName.substring(fileName.lastIndexOf(".") + 1);

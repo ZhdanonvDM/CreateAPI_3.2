@@ -18,6 +18,11 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+    @GetMapping("/message")
+    public ResponseEntity getDefaultMessage() {
+        return ResponseEntity.ok("Hello");
+    }
+
     @PostMapping
     public ResponseEntity createStudent(@RequestBody Student student) {
         Student createdStudent = studentService.createStudent(student);
@@ -47,14 +52,14 @@ public class StudentController {
         return ResponseEntity.ok(student);
     }
 
-    @GetMapping("/faculty_id/{faculty_id}")
+/*    @GetMapping("/faculty_id/{faculty_id}")
     public ResponseEntity getStudent(@PathVariable long faculty_id) {
         Set<Student> students = studentService.findStudentsByFaculty_Id(faculty_id);
         if(students == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(students);
-    }
+    }*/
 
     @GetMapping("/find_student_by_age_between/")
     public ResponseEntity findStudentsByAgeBetween(@RequestParam int min, @RequestParam int max) {

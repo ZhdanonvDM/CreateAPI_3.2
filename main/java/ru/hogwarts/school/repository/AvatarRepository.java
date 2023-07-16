@@ -10,7 +10,7 @@ import java.util.Set;
 
 public interface AvatarRepository extends JpaRepository<Avatar, Long>{
 
-    public Optional<Avatar> findAvatarByStudentId (long student_id);
+ //   public Optional<Avatar> findAvatarByStudentId (long student_id);
 
 
 }
