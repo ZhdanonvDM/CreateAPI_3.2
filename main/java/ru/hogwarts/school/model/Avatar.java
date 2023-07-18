@@ -1,6 +1,7 @@
 package ru.hogwarts.school.model;
 
 import javax.persistence.*;
+import java.util.Arrays;
 
 @Entity
 public class Avatar {
@@ -10,19 +11,19 @@ public class Avatar {
     private String filePath;
     private long fileSize;
     private String mediaType;
-    @Lob
+   // @Lob
     private byte[] data;
-/*    @OneToOne
+    @OneToOne
     @JoinColumn(name = "student_id")
-    private Student student;*/
+    private Student student;
 
-    public Avatar(Long id, String filePath, long fileSize, String mediaType, byte[] data) {
+    public Avatar(Long id, String filePath, long fileSize, String mediaType, byte[] data, Student student) {
         this.id = id;
         this.filePath = filePath;
         this.fileSize = fileSize;
         this.mediaType = mediaType;
         this.data = data;
-    //    this.student = student;
+        this.student = student;
     }
 
 
@@ -67,13 +68,25 @@ public class Avatar {
         this.data = data;
     }
 
-/*    public Student getStudent() {
+    public Student getStudent() {
         return student;
     }
 
     public void setStudent(Student student) {
         this.student = student;
-    }*/
+    }
+
+    @Override
+    public String toString() {
+        return "Avatar{" +
+                "id=" + id +
+                ", filePath='" + filePath + '\'' +
+                ", fileSize=" + fileSize +
+                ", mediaType='" + mediaType + '\'' +
+                ", data=" + Arrays.toString(data) +
+                ", student=" + student +
+                '}';
+    }
 
     public Avatar() {
     }

@@ -18,6 +18,29 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+
+    @GetMapping("/count-of-students")
+    public ResponseEntity findCountOfStudents () {
+        int n = studentService.findCountOfStudents();
+        return ResponseEntity.ok(n);
+    }
+
+    @GetMapping("/average-age-of-students")
+    public ResponseEntity findAverageAgeOfStudents () {
+        float n = studentService.findAverageAgeOfStudents();
+        return ResponseEntity.ok(String.valueOf(n));
+    }
+
+    @GetMapping("/last-last-five-of-students")
+    public ResponseEntity findLastFiveOfStudents () {
+        List<Student> students = studentService.findLastFiveOfStudents();
+        if(students == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(students);
+    }
+
+
     @GetMapping("/message")
     public ResponseEntity getDefaultMessage() {
         return ResponseEntity.ok("Hello");

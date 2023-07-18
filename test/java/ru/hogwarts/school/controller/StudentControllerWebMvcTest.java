@@ -70,8 +70,8 @@ public class StudentControllerWebMvcTest {
         mockMvc.perform(MockMvcRequestBuilders
                         .post("/student") //send
                         .content(studentObject.toString())
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .accept(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON)  // что будем отправлять
+                        .accept(MediaType.APPLICATION_JSON))    // что будем получать
                 .andExpect(status().isOk()) //receive
                 .andExpect(jsonPath("$.id").value(id))
                 .andExpect(jsonPath("$.name").value(name))

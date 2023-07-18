@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import ru.hogwarts.school.model.Avatar;
+import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.service.AvatarService;
 import ru.hogwarts.school.service.StudentService;
 
@@ -16,9 +17,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 @RestController
-        //@RequestMapping("/avatar")
+@RequestMapping("/avatar")
 public class AvatarController {
     private final AvatarService avatarService;
 
@@ -31,6 +33,16 @@ public class AvatarController {
         avatarService.uploadAvatar(studentId, avatar);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping(value = "/findAll")
+
+    public ResponseEntity findAllAvatar (@RequestParam ("page") Integer pageNumber,  @RequestParam ("size") Integer pageSize) {
+        List<Avatar> avatars = avatarService.findAllAvatar(pageNumber, pageSize);
+        return ResponseEntity.ok(avatars);
+    }
+
+
+ //       return avatarRepository.findAll();
 /*    @GetMapping(value = "/{id}/avatar-from-db")
     public ResponseEntity<byte[]> downloadAvatar(@PathVariable Long id) {
         Avatar avatar = avatarService.findAvatar(id);

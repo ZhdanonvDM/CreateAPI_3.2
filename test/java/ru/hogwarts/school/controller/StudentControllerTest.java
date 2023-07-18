@@ -45,7 +45,4 @@ public class StudentControllerTest {
                 postForObject("http://localhost:" + port +"/student", student, String.class)).isNotEmpty();
 
     }
-
-
-
 }

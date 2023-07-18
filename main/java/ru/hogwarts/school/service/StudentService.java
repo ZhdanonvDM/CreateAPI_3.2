@@ -12,9 +12,27 @@ import java.util.stream.Collectors;
 public class StudentService {
     private final StudentRepository sr;
 
+
+
     public StudentService(StudentRepository sr) {
         this.sr = sr;
     }
+
+
+
+    public int findCountOfStudents () {
+        return sr.findCountOfStudents();
+    }
+
+    public float findAverageAgeOfStudents () {
+        return sr.findAverageAgeOfStudents();
+    }
+    public List<Student> findLastFiveOfStudents () {
+        return sr.findLastFiveOfStudents();
+    }
+
+
+
 
     public Student createStudent(Student student) {
         return sr.save(student);
@@ -38,6 +56,7 @@ public class StudentService {
     public Collection<Student> findStudentsByAgeBetween(int min, int max) {
         return sr.findStudentsByAgeBetween(min, max);
     }
+
 
     //Получение списка студентов по возрасту
 /*    public List<Student> studentExtractByAge(int age) {
