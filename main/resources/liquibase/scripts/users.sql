@@ -8,7 +8,6 @@ email text
 -- changeset ZhdanovDM:2
 CREATE INDEX users_email ON users (email)
 
-
 -- changeset ZhdanovDM:3
 CREATE INDEX student_name ON student (name)
 
