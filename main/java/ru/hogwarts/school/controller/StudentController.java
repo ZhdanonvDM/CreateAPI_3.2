@@ -18,7 +18,6 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-
     @GetMapping("/count-of-students")
     public ResponseEntity findCountOfStudents () {
         int n = studentService.findCountOfStudents();
@@ -49,6 +48,8 @@ public class StudentController {
     @PostMapping
     public ResponseEntity createStudent(@RequestBody Student student) {
         Student createdStudent = studentService.createStudent(student);
+        System.out.println("Номер порта");
+        System.out.println(System.getProperties().getProperty("server.port"));
         return ResponseEntity.ok(createdStudent);
     }
 
