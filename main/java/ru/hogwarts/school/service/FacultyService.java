@@ -8,10 +8,7 @@ import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.FacultyRepository;
 
 import java.sql.SQLOutput;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,6 +20,18 @@ public class FacultyService {
 
     public FacultyService(FacultyRepository fr) {
         this.fr = fr;
+    }
+
+
+    public String findLongTitleOfFaculty () {
+        List<Faculty> faculties = fr.findAll();
+/*        faculties.stream().map(Faculty::getName).map(String::length).
+                max(Integer::compare).get().toString();*/
+        String s = faculties.stream()
+                .map(Faculty::getName)
+                .max(Comparator.comparingInt(v -> v.length()))
+                .get().toString();
+        return s;
     }
 
     public Faculty createFaculty(Faculty faculty) {

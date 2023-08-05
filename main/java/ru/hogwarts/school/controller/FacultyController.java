@@ -33,6 +33,11 @@ public class FacultyController {
         return ResponseEntity.ok(faculty);
     }
 
+    @GetMapping ("long-title")
+    public ResponseEntity findLongTitleOfFaculty () {
+        String longTitle = facultyService.findLongTitleOfFaculty();
+        return ResponseEntity.ok(longTitle);
+    }
     @PutMapping()
     public ResponseEntity updateFaculty(@RequestBody Faculty faculty) {
         Faculty updatedfaculty = facultyService.updateFaculty(faculty);

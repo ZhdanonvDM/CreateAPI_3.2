@@ -18,6 +18,24 @@ public class StudentController {
         this.studentService = studentService;
     }
 
+//    public Double findStudentAverageAge () {
+    @GetMapping("/student-average-age")
+    public ResponseEntity findStudentAverageAge () {
+        Double age = studentService.findStudentAverageAge();
+        return ResponseEntity.ok(age);
+    }
+    @GetMapping("/sum")
+    public ResponseEntity sum () {
+        int sum = studentService.sum();
+        return ResponseEntity.ok(sum);
+    }
+
+
+    @GetMapping("/student-name-A")
+    public ResponseEntity findNameStudentBeginA () {
+        List<String> students = studentService.findNameStudentBeginA();
+        return ResponseEntity.ok(students);
+    }
     @GetMapping("/count-of-students")
     public ResponseEntity findCountOfStudents () {
         int n = studentService.findCountOfStudents();
