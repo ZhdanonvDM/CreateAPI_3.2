@@ -29,9 +29,13 @@ public class StudentController {
         int sum = studentService.sum();
         return ResponseEntity.ok(sum);
     }
-    @GetMapping("/student-by-Thread")
+    @GetMapping("/student-by-thread")
     public void getStudentByThread () {
         studentService.getStudentByThread();
+    }
+    @GetMapping("/student-by-thread-synch")
+    public void getStudentByThreadSynch () {
+        studentService.getStudentByThreadSync();
     }
 
     @GetMapping("/student-name-A")
