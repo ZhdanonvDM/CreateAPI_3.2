@@ -29,7 +29,10 @@ public class StudentController {
         int sum = studentService.sum();
         return ResponseEntity.ok(sum);
     }
-
+    @GetMapping("/student-by-Thread")
+    public void getStudentByThread () {
+        studentService.getStudentByThread();
+    }
 
     @GetMapping("/student-name-A")
     public ResponseEntity findNameStudentBeginA () {

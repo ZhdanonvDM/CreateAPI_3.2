@@ -35,11 +35,12 @@ public class StudentService {
 
     public List<String> findNameStudentBeginA () {
         List<Student> students = sr.findAll();
-        return students.stream().
-                filter(s -> s.getName().charAt(0) == 'А').
-                map(Student::getName).
-                sorted().
-                collect(Collectors.toList());
+        return students.stream()
+                .filter(s -> s.getName().charAt(0) == 'А')
+                .map(Student::getName)
+                .map(s -> s.toUpperCase())
+                .sorted()
+                .collect(Collectors.toList());
     }
     public Double findStudentAverageAge () {
         List<Student> students = sr.findAll();
@@ -84,11 +85,20 @@ public class StudentService {
         return sr.findStudentsByAgeBetween(min, max);
     }
 
-
-    //Получение списка студентов по возрасту
-/*    public List<Student> studentExtractByAge(int age) {
-        return students.values().stream()
-                .filter(e -> e.getAge() == age)
+    public void getStudentByThread () {
+        var students = sr.findAll()
+                .stream()
+                .limit(6)
                 .collect(Collectors.toList());
-    }*/
+        System.out.println(students.get(0));
+        System.out.println(students.get(1));
+        new Thread(() -> {
+            System.out.println(students.get(3));
+            System.out.println(students.get(4));
+        }).start();
+        new Thread(() -> {
+            System.out.println(students.get(4));
+            System.out.println(students.get(5));
+        }).start();
+    }
 }

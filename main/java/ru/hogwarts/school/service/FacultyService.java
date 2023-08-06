@@ -30,7 +30,7 @@ public class FacultyService {
         String s = faculties.stream()
                 .map(Faculty::getName)
                 .max(Comparator.comparingInt(v -> v.length()))
-                .get().toString();
+                .get();
         return s;
     }
 
