@@ -1,11 +1,15 @@
 package ru.hogwarts.school.service;
+import com.google.common.base.Stopwatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.StudentRepository;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class StudentService {
@@ -17,6 +21,33 @@ public class StudentService {
 
     Logger logger = LoggerFactory.getLogger(StudentService.class);
 
+    public int sum () {
+        System.currentTimeMillis();
+        int sum = Stream
+                .iterate(1, a -> a +1)
+                .parallel()
+                .limit(1_000_000)
+                .reduce(0, (a, b) -> a + b );
+        return sum;
+    }
+
+
+
+    public List<String> findNameStudentBeginA () {
+        List<Student> students = sr.findAll();
+        return students.stream()
+                .filter(s -> s.getName().charAt(0) == 'А')
+                .map(Student::getName)
+                .map(s -> s.toUpperCase())
+                .sorted()
+                .collect(Collectors.toList());
+    }
+    public Double findStudentAverageAge () {
+        List<Student> students = sr.findAll();
+        return students.stream().
+                mapToInt(Student::getAge).
+                average().getAsDouble();
+    }
 
     public int findCountOfStudents () {
         return sr.findCountOfStudents();
@@ -54,11 +85,20 @@ public class StudentService {
         return sr.findStudentsByAgeBetween(min, max);
     }
 
-
-    //Получение списка студентов по возрасту
-/*    public List<Student> studentExtractByAge(int age) {
-        return students.values().stream()
-                .filter(e -> e.getAge() == age)
+    public void getStudentByThread () {
+        var students = sr.findAll()
+                .stream()
+                .limit(6)
                 .collect(Collectors.toList());
-    }*/
+        System.out.println(students.get(0));
+        System.out.println(students.get(1));
+        new Thread(() -> {
+            System.out.println(students.get(3));
+            System.out.println(students.get(4));
+        }).start();
+        new Thread(() -> {
+            System.out.println(students.get(4));
+            System.out.println(students.get(5));
+        }).start();
+    }
 }
